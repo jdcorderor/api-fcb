@@ -62,14 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(item, null, 2)
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Nuevo registro añadido:', data);
-            })
-            .catch(error => {
-                // Maneja errores de la solicitud fetch.
-                console.error('Error al añadir el nuevo registro:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Nuevo registro añadido:', data);
+                })
+                .catch(error => {
+                    // Maneja errores de la solicitud fetch.
+                    console.error('Error al añadir el nuevo registro:', error);
+                });
         });
     }
 });
@@ -156,21 +156,21 @@ if (window.location.pathname.endsWith('results.html')) {
             fetch(`http://localhost:3000/${id}`, {
                 method: 'DELETE',
             })
-            .then(response => {
-                // Verifica si la respuesta es exitosa.
-                if (!response.ok) {
-                    throw new Error('Error al eliminar el registro');
-                }
-                // Convierte la respuesta a formato JSON.
-                return response.json();
-            })
-            .then(data => {
-                console.log('Registro eliminado:', data);
-            })
-            .catch(error => {
-                // Maneja errores de la solicitud fetch.
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    // Verifica si la respuesta es exitosa.
+                    if (!response.ok) {
+                        throw new Error('Error al eliminar el registro');
+                    }
+                    // Convierte la respuesta a formato JSON.
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Registro eliminado:', data);
+                })
+                .catch(error => {
+                    // Maneja errores de la solicitud fetch.
+                    console.error('Error:', error);
+                });
             // Redirige a la página 'main.html'.
             window.location.href = 'main.html'
         });
@@ -231,6 +231,7 @@ if (window.location.pathname.endsWith('editor.html')) {
             valormercado: document.getElementById('marketvalue').value,
             imagen: document.getElementById('image').value
         };
+        console.log(item);
         // Emite una solicitud fetch (PUT) a la API, con el objeto de registro modificado como cuerpo de la solicitud.
         fetch(`http://localhost:3000`, {
             method: 'PUT',
@@ -239,20 +240,20 @@ if (window.location.pathname.endsWith('editor.html')) {
             },
             body: JSON.stringify(item)
         })
-        .then(response => {
-            // Verifica si la respuesta es exitosa.
-            if (!response.ok) {
-                throw new Error('Error al modificar el registro');
-            }
-            // Convierte la respuesta a formato JSON.
-            return response.json();
-        })
-        .then(data => {
-            console.log('Registro editado:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                // Verifica si la respuesta es exitosa.
+                if (!response.ok) {
+                    throw new Error('Error al modificar el registro');
+                }
+                // Convierte la respuesta a formato JSON.
+                return response.json();
+            })
+            .then(data => {
+                console.log('Registro editado:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         // Redirige a la página 'main.html'.
         window.location.href = 'main.html'
     });

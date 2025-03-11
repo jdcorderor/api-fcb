@@ -35,14 +35,14 @@ app.get("/", (req, res) => {
     const query = req.query.query.toLowerCase(); // Parámetro de consulta.
     // Verifica si el parámetro de consulta está vacío.
     if (!query) {
-        return res.status(400).json({ error: "Error. Parámetro de consulta requerido."})
+        return res.status(400).json({ error: "Error. Parámetro de consulta requerido." })
     }
     // Filtra los items según el parámetro de consulta.
     const results = items.filter(item =>
         item.nombre.toLowerCase().includes(query) ||
         item.edad.toString().includes(query) ||
         item.nacionalidad.toLowerCase().includes(query) ||
-        item.dorsal.toString().includes(query) ||        
+        item.dorsal.toString().includes(query) ||
         item.posicion.toLowerCase().includes(query) ||
         item.estatura.toString().includes(query) ||
         item.valormercado.toString().includes(query)

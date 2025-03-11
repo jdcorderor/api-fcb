@@ -1,15 +1,17 @@
 [
   {
+    "id": "1",
     "nombre": "Marc-André ter Stegen",
+    "posicion": "Portero",
+    "dorsal": 1,
     "edad": 31,
     "nacionalidad": "Alemania",
-    "dorsal": 1,
-    "posicion": "Portero",
     "estatura": 1.87,
     "valormercado": "15 millones de euros",
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/04c3b761-ccbd-498f-b988-b67ed1693906/01-Ter_Stegen-M.png?width=670&height=790"
   },
   {
+    "id": "2",
     "nombre": "Iñaki Peña",
     "posicion": "Portero",
     "dorsal": 13,
@@ -20,6 +22,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/c058dc89-fa0b-4aa9-99de-a129ece52320/13-Inaki_Pena-M.png?width=670&height=790"
   },
   {
+    "id": "3",
     "nombre": "Wojciech Szczęsny",
     "posicion": "Portero",
     "dorsal": 25,
@@ -30,6 +33,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p59936/1024x1113/p59936_t178_2024_1_001_000.png"
   },
   {
+    "id": "4",
     "nombre": "Pau Cubarsí",
     "posicion": "Defensor central",
     "dorsal": 32,
@@ -40,6 +44,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p593110/1024x1113/p593110_t178_2024_1_001_000.png"
   },
   {
+    "id": "5",
     "nombre": "Ronald Araújo",
     "posicion": "Defensor central",
     "dorsal": 4,
@@ -50,6 +55,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/5352ecab-dc7a-4d20-a047-67af419dd96b/04-Araujo-M.png?width=670&height=790"
   },
   {
+    "id": "6",
     "nombre": "Andreas Christensen",
     "posicion": "Defensor central",
     "dorsal": 15,
@@ -60,6 +66,7 @@
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250041718.webp"
   },
   {
+    "id": "7",
     "nombre": "Eric García",
     "posicion": "Defensor central",
     "dorsal": 24,
@@ -70,6 +77,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/60ec100e-ca62-492c-a3c7-7e73956b035b/24-Eric_Garcia-M.png?width=624&height=368"
   },
   {
+    "id": "8",
     "nombre": "Iñigo Martínez",
     "posicion": "Defensor central",
     "dorsal": 5,
@@ -80,6 +88,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p90318/1024x1024/p90318_t178_2024_1_003_000.png"
   },
   {
+    "id": "9",
     "nombre": "Alejandro Balde",
     "posicion": "Defensor lateral izquierdo",
     "dorsal": 22,
@@ -90,6 +99,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p493019/2048x2225/p493019_t178_2024_1_001_000.png"
   },
   {
+    "id": "10",
     "nombre": "Gerard Martín",
     "posicion": "Centrocampista",
     "dorsal": 30,
@@ -100,6 +110,7 @@
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250197801.webp"
   },
   {
+    "id": "11",
     "nombre": "Jules Koundé",
     "posicion": "Defensor central / Lateral derecho",
     "dorsal": 23,
@@ -110,6 +121,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p220325/1024x1024/p220325_t178_2024_1_003_000.png"
   },
   {
+    "id": "12",
     "nombre": "Héctor Fort",
     "posicion": "Defensor",
     "dorsal": 35,
@@ -120,6 +132,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p499310/2048x2225/p499310_t178_2024_1_001_000.png"
   },
   {
+    "id": "13",
     "nombre": "Marc Casadó",
     "posicion": "Centrocampista",
     "dorsal": 26,
@@ -130,6 +143,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p494927/1024x1113/p494927_t178_2024_1_001_000.png"
   },
   {
+    "id": "14",
     "nombre": "Marc Bernal",
     "posicion": "Centrocampista",
     "dorsal": 36,
@@ -140,6 +154,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p637126/2048x2225/p637126_t178_2024_1_001_000.png"
   },
   {
+    "id": "15",
     "nombre": "Pedri",
     "posicion": "Centrocampista",
     "dorsal": 8,
@@ -150,6 +165,7 @@
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250143693.webp"
   },
   {
+    "id": "16",
     "nombre": "Gavi",
     "posicion": "Centrocampista",
     "dorsal": 6,
@@ -160,6 +176,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/545795b7-4c63-4347-94ab-5f2a49b1eddd/06-Gavi-M.png?width=670&height=790"
   },
   {
+    "id": "17",
     "nombre": "Fermín López",
     "posicion": "Centrocampista",
     "dorsal": 28,
@@ -170,6 +187,7 @@
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250164780.webp"
   },
   {
+    "id": "18",
     "nombre": "Frenkie de Jong",
     "posicion": "Centrocampista",
     "dorsal": 21,
@@ -180,6 +198,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/1f6c10a5-07cd-47b3-929b-e29ccabe18d7/21-De_Jong-M.png?width=624&height=368"
   },
   {
+    "id": "19",
     "nombre": "Dani Olmo",
     "posicion": "Centrocampista ofensivo",
     "dorsal": 19,
@@ -190,6 +209,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/6df53816-c907-4ecc-bd0a-c2e8e5a281c2/20-Olmo-M.png?width=670&height=790"
   },
   {
+    "id": "20",
     "nombre": "Pablo Torre",
     "posicion": "Centrocampista ofensivo",
     "dorsal": 16,
@@ -200,6 +220,7 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p522627/2048x2225/p522627_t178_2024_1_001_000.png"
   },
   {
+    "id": "21",
     "nombre": "Raphinha",
     "posicion": "Extremo derecho",
     "dorsal": 11,
@@ -210,6 +231,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/266dc5af-16b0-4290-99c5-03d73a48df11/11-Raphinha-M.png?width=624&height=368"
   },
   {
+    "id": "22",
     "nombre": "Ansu Fati",
     "posicion": "Extremo izquierdo",
     "dorsal": 10,
@@ -220,16 +242,18 @@
     "imagen": "https://assets.laliga.com/squad/2024/t178/p465607/2048x2225/p465607_t178_2024_1_001_000.png"
   },
   {
+    "id": "23",
     "nombre": "Lamine Yamal",
+    "posicion": "Extremo derecho",
+    "dorsal": 27,
     "edad": 17,
     "nacionalidad": "España",
-    "dorsal": 27,
-    "posicion": "Extremo derecho",
     "estatura": 1.8,
     "valormercado": "180 millones de euros",
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250176450.webp"
   },
   {
+    "id": "24",
     "nombre": "Ferrán Torres",
     "posicion": "Extremo / Delantero",
     "dorsal": 7,
@@ -240,6 +264,7 @@
     "imagen": "https://www.fcbarcelona.com/photo-resources/2024/10/13/1edefda1-8229-4232-ace9-2f35bf4d3000/07-Ferran_Torres-M.png?width=624&height=368"
   },
   {
+    "id": "25",
     "nombre": "Robert Lewandowski",
     "posicion": "Delantero",
     "dorsal": 9,
@@ -250,7 +275,8 @@
     "imagen": "https://img.uefa.com/imgml/TP/players/1/2025/cutoff/250002096.webp"
   },
   {
-    "nombre": "Pau Víctor",
+    "id": "26",
+    "nombre": "Pau Vícto",
     "posicion": "Delantero / Centrocampista ofensivo",
     "dorsal": 29,
     "edad": 22,
@@ -258,15 +284,5 @@
     "estatura": 1.84,
     "valormercado": "5 millones de euros",
     "imagen": "https://assets.laliga.com/squad/2024/t178/p504584/1024x1113/p504584_t178_2024_1_001_000.png"
-  },
-  {
-    "nombre": "Lionel Messi",
-    "edad": 37,
-    "nacionalidad": "Argentina",
-    "dorsal": 10,
-    "posicion": "Delantero",
-    "estatura": 1.7,
-    "valormercado": "10 millones",
-    "imagen": "https://wallpapers.com/images/hd/lionel-messi-celebration-f-c-barcelona-hvg443b7e8ycuf0q.png"
   }
 ]
