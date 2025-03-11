@@ -56,6 +56,14 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
     // Obtiene los datos del nuevo registro del cuerpo de la solicitud.
     const item = req.body;
+    // Validaciones de los datos del nuevo registro.
+    if (!item || !item.nombre) {
+        return res.status(400).json({ error: "Datos inválidos. Se requiere al menos 'nombre'." });
+    }
+
+    // Obtener el último ID y sumarle 1.
+    const lastId = items.length > 0 ? Math.max(...items.map(i => i.id)) : 0;
+    item.id = lastId + 1;
     // Agrega el nuevo registro al array de almacenamiento.
     items.push(item)
     // Modifica el archivo 'data.json'.
