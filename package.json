@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js",
+    "dev": "nodemon api.js"
+  },
+  "keywords": [],
+  "author": "Juan Diego Cordero",
+  "license": "ISC",
+  "description": "Football Players API",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "image-url-validator": "^1.0.4",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
