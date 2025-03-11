@@ -1,61 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionamos el formulario de búsqueda
+    // Seleccionamos el formulario de búsqueda y le agregamos el evento correspondiente
     const searchForm = document.getElementById('search-form');
-
     if (searchForm) {
-        searchForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Evita que la página se recargue
-
-            // Capturamos el valor ingresado en el input
-            const query = document.getElementById('input').value.trim();
-            if (!query) return alert('Ingrese un término de búsqueda.');
-
-            try {
-                // Realizamos la petición a la API
-                const response = await fetch(`http://localhost:3000/?query=${query}`);
-                if (!response.ok) throw new Error('Error al obtener datos.');
-
-                const data = await response.json();
-
-                // Verificamos si hay resultados
-                if (data.results.length > 0) {
-                    localStorage.setItem('results', JSON.stringify(data.results));
-                    window.location.href = 'results.html';
-                } else {
-                    mostrarMensajeError('No se encontraron coincidencias. Intente nuevamente.');
-                }
-            } catch (error) {
-                console.error('Error en la búsqueda:', error);
-            }
-        });
+        searchForm.addEventListener('submit', manejarBusqueda);
     }
 
-    // Manejamos el formulario de registro
+    // Seleccionamos el formulario de registro y le agregamos el evento correspondiente
     const registrationForm = document.getElementById('registration-form');
-
     if (registrationForm) {
-        registrationForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            // Capturamos los valores del formulario
-            const item = obtenerDatosFormulario();
-
-            try {
-                const response = await fetch('http://localhost:3000', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(item),
-                });
-
-                if (!response.ok) throw new Error('Error al registrar los datos.');
-
-                const data = await response.json();
-                console.log('Nuevo registro añadido:', data);
-                window.location.href = 'main.html';
-            } catch (error) {
-                console.error('Error al registrar:', error);
-            }
-        });
+        registrationForm.addEventListener('submit', manejarRegistro);
     }
 
     // Si estamos en 'results.html', mostramos los resultados almacenados
@@ -63,19 +16,78 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarResultados();
     }
 
-    // Si estamos en 'editor.html', precargamos los datos para editar
+    // Si estamos en 'editor.html', cargamos los datos del jugador para su edición
     if (window.location.pathname.endsWith('editor.html')) {
         cargarDatosEdicion();
     }
 });
 
-// Muestra un mensaje de error en pantalla.
+/**
+ * Maneja la búsqueda de jugadores y redirige a la página de resultados.
+ */
+async function manejarBusqueda(event) {
+    event.preventDefault();
+
+    // Capturamos el valor ingresado y validamos que no esté vacío
+    const query = document.getElementById('input').value.trim();
+    if (!query) return alert('Ingrese un término de búsqueda.');
+
+    try {
+        // Realizamos la petición a la API
+        const response = await fetch(`http://localhost:3000/?query=${query}`);
+        if (!response.ok) throw new Error('Error al obtener datos.');
+
+        const data = await response.json();
+
+        // Verificamos si hay resultados
+        if (data.results.length > 0) {
+            localStorage.setItem('results', JSON.stringify(data.results));
+            window.location.href = 'results.html';
+        } else {
+            mostrarMensajeError('No se encontraron coincidencias. Intente nuevamente.');
+        }
+    } catch (error) {
+        console.error('Error en la búsqueda:', error);
+    }
+}
+
+/**
+ * Maneja el registro de un nuevo jugador.
+ */
+async function manejarRegistro(event) {
+    event.preventDefault();
+
+    // Capturamos los valores del formulario
+    const item = obtenerDatosFormulario();
+
+    try {
+        const response = await fetch('http://localhost:3000', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item),
+        });
+
+        if (!response.ok) throw new Error('Error al registrar los datos.');
+
+        const data = await response.json();
+        console.log('Nuevo registro añadido:', data);
+        window.location.href = 'main.html';
+    } catch (error) {
+        console.error('Error al registrar:', error);
+    }
+}
+
+/**
+ * Muestra un mensaje de error en pantalla.
+ */
 function mostrarMensajeError(mensaje) {
     const contentElement = document.getElementById('not-found');
     contentElement.innerHTML = `<p>${mensaje}</p>`;
 }
 
-// Obtiene los datos ingresados en el formulario de registro o edición.
+/**
+ * Obtiene los datos ingresados en el formulario de registro o edición.
+ */
 function obtenerDatosFormulario() {
     return {
         nombre: document.getElementById('name').value.trim(),
@@ -89,7 +101,9 @@ function obtenerDatosFormulario() {
     };
 }
 
-// Muestra los resultados almacenados en localStorage en 'results.html'.
+/**
+ * Muestra los resultados almacenados en localStorage en 'results.html'.
+ */
 function mostrarResultados() {
     const resultsContainer = document.getElementById('results-container');
     const results = JSON.parse(localStorage.getItem('results'));
@@ -119,7 +133,9 @@ function mostrarResultados() {
     agregarEventosBotones();
 }
 
-// Agrega eventos a los botones de editar y eliminar.
+/**
+ * Agrega eventos a los botones de editar y eliminar.
+ */
 function agregarEventosBotones() {
     document.querySelectorAll('.edit').forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -135,12 +151,17 @@ function agregarEventosBotones() {
     document.querySelectorAll('.delete').forEach((button) => {
         button.addEventListener('click', async (event) => {
             const id = event.target.getAttribute('data-id');
+
+            // Confirmación antes de eliminar
+            const confirmar = confirm('¿Está seguro de que desea eliminar este registro?');
+            if (!confirmar) return;
+
             try {
                 const response = await fetch(`http://localhost:3000/${id}`, { method: 'DELETE' });
                 if (!response.ok) throw new Error('Error al eliminar el registro.');
 
                 console.log(`Registro con ID ${id} eliminado.`);
-                window.location.reload();
+                window.location.href = 'main.html';
             } catch (error) {
                 console.error('Error al eliminar:', error);
             }
@@ -148,34 +169,37 @@ function agregarEventosBotones() {
     });
 }
 
-
-// Carga los datos del jugador a editar en el formulario de 'editor.html'.
-
+/**
+ * Carga los datos del jugador a editar en el formulario de 'editor.html'.
+ */
 function cargarDatosEdicion() {
-    document.addEventListener('DOMContentLoaded', () => {
-        const playerData = localStorage.getItem('information');
-        if (!playerData) return console.error('Registro no encontrado');
+    const playerData = localStorage.getItem('information');
+    if (!playerData) return console.error('Registro no encontrado');
 
-        const player = JSON.parse(playerData);
-        document.getElementById('name').value = player.nombre || '';
-        document.getElementById('age').value = player.edad || '';
-        document.getElementById('nationality').value = player.nacionalidad || '';
-        document.getElementById('dorsal').value = player.dorsal || '';
-        document.getElementById('position').value = player.posicion || '';
-        document.getElementById('height').value = player.estatura || '';
-        document.getElementById('marketvalue').value = player.valormercado || '';
-        document.getElementById('image').value = player.imagen || '';
+    const player = JSON.parse(playerData);
+    document.getElementById('name').value = player.nombre || '';
+    document.getElementById('age').value = player.edad || '';
+    document.getElementById('nationality').value = player.nacionalidad || '';
+    document.getElementById('dorsal').value = player.dorsal || '';
+    document.getElementById('position').value = player.posicion || '';
+    document.getElementById('height').value = player.estatura || '';
+    document.getElementById('marketvalue').value = player.valormercado || '';
+    document.getElementById('image').value = player.imagen || '';
 
-        manejarEdicion(player.id);
-    });
+    manejarEdicion(player.id);
 }
 
-
+/**
+ * Maneja la edición de un registro en 'editor.html'.
+ */
 function manejarEdicion(id) {
     const editForm = document.getElementById('edit-form');
-
     editForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        // Confirmación antes de modificar
+        const confirmar = confirm('¿Está seguro de que desea modificar este registro?');
+        if (!confirmar) return;
 
         const item = obtenerDatosFormulario();
         try {
