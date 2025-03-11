@@ -78,27 +78,34 @@ app.post("/", (req, res) => {
 });
 
 // Endpoint PUT.
-app.put("/", (req, res) => {
+app.put("/:id", (req, res) => {
     // Obtiene los datos del registro a modificar del cuerpo de la solicitud.
-    const id = req.body;
+    const data = req.body;
+    const id = req.params.id;
+
     // Determina el índice del registro a modificar en el array de almacenamiento.
     const index = items.findIndex(item => item.id.toString() === id);
+
     // Verifica si el registro a modificar no existe.
     if (index === -1) {
         return res.status(404).json({ error: "Registro no encontrado." });
     }
+
     // Modifica el registro en el array de almacenamiento.
-    items[index] = id;
+    items[index] = { ...items[index], ...data };
+
     // Modifica el archivo 'data.json'.
     fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
         // Verifica si ocurrió un error.
         if (err) {
             return res.status(500).json({ error: "Error al actualizar el registro." });
         }
+
         // Retorna una respuesta con el estado 200 (OK), y el registro modificado en formato JSON.
-        res.status(200).json(item);
+        res.status(200).json(items[index]);
     });
 });
+
 
 // Endpoint DELETE.
 app.delete("/:id", (req, res) => {
