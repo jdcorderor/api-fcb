@@ -35,14 +35,15 @@ app.get("/", (req, res) => {
     const query = req.query.query.toLowerCase(); // Parámetro de consulta.
     // Verifica si el parámetro de consulta está vacío.
     if (!query) {
-        return res.status(400).json({ error: "Error. Parámetro de consulta requerido."})
+        return res.status(400).json({ error: "Error. Parámetro de consulta requerido." })
     }
     // Filtra los items según el parámetro de consulta.
     const results = items.filter(item =>
+        item.id.toString().includes(query) ||
         item.nombre.toLowerCase().includes(query) ||
         item.edad.toString().includes(query) ||
         item.nacionalidad.toLowerCase().includes(query) ||
-        item.dorsal.toString().includes(query) ||        
+        item.dorsal.toString().includes(query) ||
         item.posicion.toLowerCase().includes(query) ||
         item.estatura.toString().includes(query) ||
         item.valormercado.toString().includes(query)
@@ -55,6 +56,14 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
     // Obtiene los datos del nuevo registro del cuerpo de la solicitud.
     const item = req.body;
+    // Validaciones de los datos del nuevo registro.
+    if (!item || !item.nombre) {
+        return res.status(400).json({ error: "Datos inválidos. Se requiere al menos 'nombre'." });
+    }
+
+    // Obtener el último ID y sumarle 1.
+    const lastId = items.length > 0 ? Math.max(...items.map(i => i.id)) : 0;
+    item.id = lastId + 1;
     // Agrega el nuevo registro al array de almacenamiento.
     items.push(item)
     // Modifica el archivo 'data.json'.
@@ -69,34 +78,41 @@ app.post("/", (req, res) => {
 });
 
 // Endpoint PUT.
-app.put("/", (req, res) => {
+app.put("/:id", (req, res) => {
     // Obtiene los datos del registro a modificar del cuerpo de la solicitud.
-    const record = req.body;
+    const data = req.body;
+    const id = req.params.id;
+
     // Determina el índice del registro a modificar en el array de almacenamiento.
-    const index = items.findIndex(item => item.nombre === record.nombre);
+    const index = items.findIndex(item => item.id.toString() === id);
+
     // Verifica si el registro a modificar no existe.
     if (index === -1) {
         return res.status(404).json({ error: "Registro no encontrado." });
     }
+
     // Modifica el registro en el array de almacenamiento.
-    items[index] = record;
+    items[index] = { ...items[index], ...data };
+
     // Modifica el archivo 'data.json'.
     fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
         // Verifica si ocurrió un error.
         if (err) {
             return res.status(500).json({ error: "Error al actualizar el registro." });
         }
+
         // Retorna una respuesta con el estado 200 (OK), y el registro modificado en formato JSON.
-        res.status(200).json(item);
+        res.status(200).json(items[index]);
     });
 });
 
+
 // Endpoint DELETE.
 app.delete("/:id", (req, res) => {
-    // Obtiene el ID (nombre) del registro a eliminar de la ruta de la solicitud.
-    const record = req.params.id
+    // Obtiene el ID (id) del registro a eliminar de la ruta de la solicitud.
+    const id = req.params.id
     // Determina el índice del registro a eliminar en el array de almacenamiento.
-    const index = items.findIndex(item => item.nombre === record);
+    const index = items.findIndex(item => item.id.toString() === id);
     // Verifica si el registro a eliminar no existe.
     if (index === -1) {
         return res.status(404).json({ error: "Registro no encontrado." });
