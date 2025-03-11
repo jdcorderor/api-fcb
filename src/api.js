@@ -14,7 +14,7 @@ app.use(bodyParser.json()); // Analiza solicitudes con el tipo de contenido 'app
 let items = []; // Array de almacenamiento.
 
 // Utiliza el módulo 'fs' para leer el archivo 'data.json', con codificación UTF-8.
-fs.readFile("data.json", "utf8", (err, data) => {
+fs.readFile("src/data/data.json", "utf8", (err, data) => {
     if (err) {
         // Si hay un error, se imprime un mensaje de error en la consola junto con el error específico.
         console.error("Error al leer el archivo de datos:", err);
@@ -37,16 +37,14 @@ app.get("/", (req, res) => {
     if (!query) {
         return res.status(400).json({ error: "Error. Parámetro de consulta requerido."})
     }
+
     // Filtra los items según el parámetro de consulta.
-    const results = items.filter(item =>
-        item.nombre.toLowerCase().includes(query) ||
-        item.edad.toString().includes(query) ||
-        item.nacionalidad.toLowerCase().includes(query) ||
-        item.dorsal.toString().includes(query) ||        
-        item.posicion.toLowerCase().includes(query) ||
-        item.estatura.toString().includes(query) ||
-        item.valormercado.toString().includes(query)
-    );
+    const results = items.filter(item => {
+        const [firstName, lastName] = item.nombre.toLowerCase().split(" ");
+        return firstName.startsWith(query) || (lastName && lastName.startsWith(query)) ||
+               item.nacionalidad.toLowerCase().startsWith(query) ||
+               item.posicion.toLowerCase().startsWith(query);
+    });
     // Retorna una respuesta con el estado 200 (OK), y un archivo JSON con los resultados de la búsqueda.
     res.status(200).json({ query: query, results: results });
 });

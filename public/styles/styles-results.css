@@ -1,0 +1,73 @@
+body {
+  background-image: url("../assets/background-resized.jpg");
+}
+
+#results-container {
+  display: grid;
+  grid-template-columns: auto;
+  width: 70vw;
+  height: 70%;
+  margin: auto;
+  margin-top: 7vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 1vh;
+  padding-bottom: 2vh;
+}
+
+img {
+  max-width: 50vw;
+  max-height: 40vh;
+  margin: auto;
+  padding-top: 5vh;
+  display: block;
+}
+
+h3 {
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+p {
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+hr {
+  width: 80%;
+  margin-top: 5vh;
+}
+
+button:not(.buttons) {
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 2.5vh;
+  display: block;
+  margin: auto;
+  margin-top: 6vh;
+  margin-bottom: 5vh;
+  padding: 1vh;
+  border-radius: 1vh;
+  width: 10%;
+}
+
+.buttonscontainer {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  margin-top: 3vh;
+}
+
+.buttons {
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 2.3vh;
+  padding: 1vh;
+  border-radius: 1vh;
+}
