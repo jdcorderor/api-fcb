@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
     }
     // Filtra los items según el parámetro de consulta.
     const results = items.filter(item =>
+        item.id.toString().includes(query) ||
         item.nombre.toLowerCase().includes(query) ||
         item.edad.toString().includes(query) ||
         item.nacionalidad.toLowerCase().includes(query) ||
@@ -71,15 +72,15 @@ app.post("/", (req, res) => {
 // Endpoint PUT.
 app.put("/", (req, res) => {
     // Obtiene los datos del registro a modificar del cuerpo de la solicitud.
-    const record = req.body;
+    const id = req.body;
     // Determina el índice del registro a modificar en el array de almacenamiento.
-    const index = items.findIndex(item => item.nombre === record.nombre);
+    const index = items.findIndex(item => item.id.toString() === id);
     // Verifica si el registro a modificar no existe.
     if (index === -1) {
         return res.status(404).json({ error: "Registro no encontrado." });
     }
     // Modifica el registro en el array de almacenamiento.
-    items[index] = record;
+    items[index] = id;
     // Modifica el archivo 'data.json'.
     fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
         // Verifica si ocurrió un error.
@@ -93,10 +94,10 @@ app.put("/", (req, res) => {
 
 // Endpoint DELETE.
 app.delete("/:id", (req, res) => {
-    // Obtiene el ID (nombre) del registro a eliminar de la ruta de la solicitud.
-    const record = req.params.id
+    // Obtiene el ID (id) del registro a eliminar de la ruta de la solicitud.
+    const id = req.params.id
     // Determina el índice del registro a eliminar en el array de almacenamiento.
-    const index = items.findIndex(item => item.nombre === record);
+    const index = items.findIndex(item => item.id.toString() === id);
     // Verifica si el registro a eliminar no existe.
     if (index === -1) {
         return res.status(404).json({ error: "Registro no encontrado." });
