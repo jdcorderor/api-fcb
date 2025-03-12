@@ -7,4 +7,4 @@
 #### Paso 4. Abrir el archivo main.html con Live Server. Debe instalar la extensión para VSCode.
 
 >[!NOTE]
-Desarrollado por: Juan Diego Cordero
+Desarrollado por: Juan Diego Cordero, Eduardo Tovar.
