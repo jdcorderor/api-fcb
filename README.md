@@ -6,5 +6,5 @@
 #### Paso 3. Ejecutar el siguiente comando en la terminal: `npm start`
 #### Paso 4. Abrir el archivo main.html con Live Server. Debe instalar la extensión para VSCode.
 
-[!NOTE]
+>[!NOTE]
 Desarrollado por: Juan Diego Cordero
