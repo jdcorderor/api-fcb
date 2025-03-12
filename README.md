@@ -1,4 +1,5 @@
-## Desarrollado por Juan Diego Cordero, Nelson Guerrero, Luis León y Eduardo Tovar.
+## Desarrollado por:
+### Juan Diego Cordero.
 
 ### Es una API desarrollada con NodeJS, que permite consultar los datos oficiales de los jugadores de la plantilla del FC Barcelona. Asimismo, permite registrar nuevos jugadores, a través de un formulario de ingreso.
 
