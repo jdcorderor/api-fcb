@@ -253,4 +253,18 @@ if (window.location.pathname.endsWith('editor.html')) {
             console.error('Error:', error);
         });
     });
+
+    // Obtiene el elemento de botón de retorno a la página 'main.html'.
+    const backToMainButton = document.getElementById('back-to-main');
+    backToMainButton.addEventListener('click', () => {
+        window.location.href = 'results.html';
+    });
+}
+
+if (window.location.pathname.endsWith('input.html')) {
+    // Obtiene el elemento de botón de retorno a la página 'main.html'.
+    const backToMainButton = document.getElementById('back-to-main');
+    backToMainButton.addEventListener('click', () => {
+        window.location.href = 'main.html';
+    });
 }

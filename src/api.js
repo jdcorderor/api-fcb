@@ -37,13 +37,13 @@ app.get("/", (req, res) => {
     if (!query) {
         return res.status(400).json({ error: "Error. Parámetro de consulta requerido."})
     }
-
     // Filtra los items según el parámetro de consulta.
     const results = items.filter(item => {
         const [firstName, lastName] = item.nombre.toLowerCase().split(" ");
         return firstName.startsWith(query) || (lastName && lastName.startsWith(query)) ||
-               item.nacionalidad.toLowerCase().startsWith(query) ||
-               item.posicion.toLowerCase().startsWith(query);
+            item.nombre.toLowerCase().includes(query) ||
+            item.nacionalidad.toLowerCase().startsWith(query) ||
+            item.posicion.toLowerCase().startsWith(query);
     });
     // Retorna una respuesta con el estado 200 (OK), y un archivo JSON con los resultados de la búsqueda.
     res.status(200).json({ query: query, results: results });
@@ -59,7 +59,7 @@ app.post("/", (req, res) => {
         // Agrega el nuevo registro al array de almacenamiento.
         items.push(item);
         // Modifica el archivo 'data.json'.
-        fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
+        fs.writeFile("src/data/data.json", JSON.stringify(items, null, 2), (err) => {
             // Verifica si ocurrió un error.
             if (err) {
                 return res.status(500).json({ error: "Error al guardar el nuevo registro." });
@@ -87,7 +87,7 @@ app.put("/:id", (req, res) => {
     // Modifica el registro en el array de almacenamiento.
     items[index] = record;
     // Modifica el archivo 'data.json'.
-    fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
+    fs.writeFile("src/data/data.json", JSON.stringify(items, null, 2), (err) => {
         // Verifica si ocurrió un error.
         if (err) {
             return res.status(500).json({ error: "Error al actualizar el registro." });
@@ -110,7 +110,7 @@ app.delete("/:id", (req, res) => {
     // Elimina el registro del array de almacenamiento, y guarda el registro eliminado en 'deletedItem'.
     const deletedItem = items.splice(index, 1);
     // Modifica el archivo 'data.json'.
-    fs.writeFile("data.json", JSON.stringify(items, null, 2), (err) => {
+    fs.writeFile("src/data/data.json", JSON.stringify(items, null, 2), (err) => {
         // Verifica si ocurrió un error.
         if (err) {
             return res.status(500).json({ error: "Error al eliminar el registro." });
